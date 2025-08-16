@@ -1,22 +1,29 @@
 import Hero from "@/components/Hero";
-import Testimonials from "@/components/Testimonials";
-import Pricing from "@/components/Pricing/Pricing";
-import FAQ from "@/components/FAQ";
-import Logos from "@/components/Logos";
-import Benefits from "@/components/Benefits/Benefits";
+import Services from "@/components/Services";
+import Process from "@/components/Process";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
+import Pricing from "@/components/Pricing/Pricing";
+import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
 import Stats from "@/components/Stats";
-import CTA from "@/components/CTA";
+// REMOVE: import CTA from "@/components/CTA";
+import MicrosoftBanner from "@/components/MicrosoftBanner";
 
 const HomePage: React.FC = () => {
   return (
     <>
+      {/* Hero with partner strip */}
       <Hero />
-      <Logos />
-      <Container>
-        <Benefits />
 
+      {/* Core services */}
+      <Services />
+
+      {/* Process (linked from the hero CTA) */}
+      <Process />
+
+      {/* Pricing + Testimonials (kept inside Container/Section) */}
+      <Container>
         <Section
           id="pricing"
           title="Pricing"
@@ -32,13 +39,14 @@ const HomePage: React.FC = () => {
         >
           <Testimonials />
         </Section>
-
-        <FAQ />
-
-        <Stats />
-        
-        <CTA />
       </Container>
+
+      {/* Standalone sections render their own containers */}
+      <FAQ />
+      <Stats />
+
+      {/* Microsoft partner banner replaces the old CTA */}
+      <MicrosoftBanner />
     </>
   );
 };

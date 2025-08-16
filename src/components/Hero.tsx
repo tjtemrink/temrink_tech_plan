@@ -1,46 +1,90 @@
-import React from 'react';
-import Image from 'next/image';
-
-import AppStoreButton from './AppStoreButton';
-import PlayStoreButton from './PlayStoreButton';
-
-import { heroDetails } from '@/data/hero';
+// src/components/Hero.tsx
+"use client";
+import React from "react";
+import Image from "next/image";
+import { heroDetails } from "@/data/hero";
 
 const Hero: React.FC = () => {
-    return (
-        <section
-            id="hero"
-            className="relative flex items-center justify-center pb-0 pt-32 md:pt-40 px-5"
-        >
-            <div className="absolute left-0 top-0 bottom-0 -z-10 w-full">
-                <div className="absolute inset-0 h-full w-full bg-hero-background bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]">
-                </div>
+  return (
+    <section id="hero" className="relative overflow-hidden">
+      {/* Soft background to avoid empty white */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white to-slate-50" />
+
+      <div className="max-w-7xl mx-auto px-6 pt-14 md:pt-16 pb-8">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          {/* LEFT */}
+          <div className="text-center lg:text-left">
+            {/* Kicker */}
+            <span className="inline-flex items-center rounded-full bg-[#010775]/10 px-3.5 py-1.5 text-sm font-semibold tracking-wide text-[#010775]">
+              {heroDetails.kicker ?? "TEMRINK FOR SMBS"}
+            </span>
+
+            <h1 className="mt-4 text-4xl md:text-5xl font-extrabold text-slate-900 md:leading-tight max-w-2xl mx-auto lg:mx-0">
+              {heroDetails.heading}
+            </h1>
+
+            <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0">
+              {heroDetails.subheading}
+            </p>
+
+            <div className="mt-7 flex flex-wrap justify-center lg:justify-start gap-4">
+              <a
+                href={heroDetails.ctaPrimary?.href ?? "#contact"}
+                className="inline-flex items-center justify-center rounded-2xl bg-[#010775] px-6 py-3 text-white font-semibold shadow-lg shadow-blue-200 hover:opacity-95"
+              >
+                {heroDetails.ctaPrimary?.label ?? "Book a meeting"}
+              </a>
+              <a
+                href={heroDetails.ctaSecondary?.href ?? "#process"}
+                className="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-6 py-3 text-slate-800 font-semibold hover:bg-slate-100"
+              >
+                {heroDetails.ctaSecondary?.label ?? "See our process"}
+              </a>
+            </div>
+          </div>
+
+          {/* RIGHT */}
+          <div className="relative">
+            <div className="aspect-[4/3] w-full rounded-3xl bg-white/70 p-3 ring-1 ring-slate-200 shadow-xl">
+              <Image
+                src={heroDetails.centerImageSrc}
+                width={1200}
+                height={900}
+                alt={heroDetails.centerImageAlt ?? "AI & Automation"}
+                priority
+                sizes="(max-width: 1024px) 100vw, 600px"
+                className="h-full w-full rounded-2xl object-cover"
+              />
             </div>
 
-            <div className="absolute left-0 right-0 bottom-0 backdrop-blur-[2px] h-40 bg-gradient-to-b from-transparent via-[rgba(233,238,255,0.5)] to-[rgba(202,208,230,0.5)]">
-            </div>
+            {/* On-brand soft glows */}
+            <div className="absolute -z-10 -top-24 -right-20 h-72 w-72 rounded-full bg-[#DD0000]/10 blur-3xl" />
+            <div className="absolute -z-10 -bottom-28 -left-28 h-72 w-72 rounded-full bg-[#010775]/10 blur-3xl" />
+          </div>
+        </div>
 
-            <div className="text-center">
-                <h1 className="text-4xl md:text-6xl md:leading-tight font-bold text-foreground max-w-lg md:max-w-2xl mx-auto">{heroDetails.heading}</h1>
-                <p className="mt-4 text-foreground max-w-lg mx-auto">{heroDetails.subheading}</p>
-                <div className="mt-6 flex flex-col sm:flex-row items-center sm:gap-4 w-fit mx-auto">
-                    <AppStoreButton dark />
-                    <PlayStoreButton dark />
-                </div>
-                <Image
-                    src={heroDetails.centerImageSrc}
-                    width={384}
-                    height={340}
-                    quality={100}
-                    sizes="(max-width: 768px) 100vw, 384px"
-                    priority={true}
-                    unoptimized={true}
-                    alt="app mockup"
-                    className='relative mt-12 md:mt-16 mx-auto z-10'
-                />
-            </div>
-        </section>
-    );
+        {/* Partner logos */}
+        <div className="mt-10 border-t border-slate-200 pt-6">
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 text-center lg:text-left">
+            Trusted by partners
+          </p>
+          <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 items-center gap-10">
+            {heroDetails.partners?.map((p) => (
+              <Image
+                key={p.name}
+                src={p.src}
+                alt={p.name}
+                width={p.width ?? 240}
+                height={p.height ?? 72}
+                className="mx-auto h-12 md:h-16 w-auto object-contain"
+                sizes="(max-width: 640px) 40vw, 240px"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Hero;
