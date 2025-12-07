@@ -5,6 +5,7 @@ import React from "react";
 import { siteDetails } from "@/data/siteDetails";
 import { footerDetails } from "@/data/footer";
 import { getPlatformIconByName } from "@/utils";
+import { CSSPropertiesWithVars } from "@/types";
 
 const BRAND_BLUE = "#010775";
 const BRAND_RED = "#DD0000";
@@ -73,9 +74,9 @@ const Footer: React.FC = () => {
             className="block font-semibold text-[color:var(--brand-blue)] hover:text-[color:var(--brand-red)]"
             style={
               {
-                ["--brand-blue" as any]: BRAND_BLUE,
-                ["--brand-red" as any]: BRAND_RED,
-              } as React.CSSProperties
+                "--brand-blue": BRAND_BLUE,
+                "--brand-red": BRAND_RED,
+              } as CSSPropertiesWithVars
             }
             aria-label="Email Temrink"
           >

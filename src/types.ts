@@ -1,3 +1,5 @@
+import type React from "react";
+
 export interface IMenuItem {
   text: string;
   url: string;
@@ -56,3 +58,8 @@ export interface ISocials {
   x?: string;
   [key: string]: string | undefined;
 }
+
+// Type for CSS properties including custom CSS variables
+export type CSSPropertiesWithVars = React.CSSProperties & {
+  [key: `--${string}`]: string;
+};

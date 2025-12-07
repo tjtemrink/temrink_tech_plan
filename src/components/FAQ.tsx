@@ -4,6 +4,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react
 import { BiMinus, BiPlus } from "react-icons/bi";
 import SectionTitle from "./SectionTitle";
 import { faqs } from "@/data/faq";
+import { CSSPropertiesWithVars } from "@/types";
 
 const BRAND_BLUE = "#010775";
 const BRAND_RED = "#DD0000";
@@ -30,9 +31,9 @@ const FAQ: React.FC = () => {
             className="mt-3 block text-xl lg:text-3xl font-semibold text-[color:var(--brand-blue)] hover:text-[color:var(--brand-red)] underline decoration-2 underline-offset-4 text-center lg:text-left"
             style={
               {
-                ["--brand-blue" as any]: BRAND_BLUE,
-                ["--brand-red" as any]: BRAND_RED,
-              } as React.CSSProperties
+                "--brand-blue": BRAND_BLUE,
+                "--brand-red": BRAND_RED,
+              } as CSSPropertiesWithVars
             }
           >
             consulting@temrink.com

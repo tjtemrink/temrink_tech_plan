@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import { IPricing } from "@/types";
+import { IPricing, CSSPropertiesWithVars } from "@/types";
 
 interface Props {
   tier: IPricing;
@@ -35,9 +35,9 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }) => {
       )}
       style={
         {
-          ["--brand-blue" as any]: BRAND_BLUE,
-          ["--brand-red" as any]: BRAND_RED,
-        } as React.CSSProperties
+          "--brand-blue": BRAND_BLUE,
+          "--brand-red": BRAND_RED,
+        } as CSSPropertiesWithVars
       }
     >
       <div className="p-6 border-b border-gray-200 rounded-t-xl">
